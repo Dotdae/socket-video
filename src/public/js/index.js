@@ -1,3 +1,7 @@
+// Load socket.io client.
+var socket = io();
+
+
 // Load iframe tag.
 
 var tag = document.createElement('script');
@@ -57,14 +61,15 @@ var pauseButton = document.getElementById('pause');
 playButton.addEventListener('click', () =>{
 
     player.playVideo();
-    console.log('Play!')
+    socket.emit('playerEvent', 'play');
 
 });
 
 pauseButton.addEventListener('click', () =>{
 
     player.pauseVideo();
-    console.log('Pause!')
+    socket.emit('playerEvent', 'pause');
+
 
 });
 
@@ -79,7 +84,8 @@ function progressBarLoop(){
     progressBar.click(function(event){
 
         var divOffset = $(this).offset();
-        console.log((event.pageX - divOffset.left)/765*videoLenght);
+        let currentTime = (event.pageX - divOffset.left)/765*player.getDuration();
+        socket.emit('playerEvent', currentTime);
 
     });
 

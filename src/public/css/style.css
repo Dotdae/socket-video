@@ -80,6 +80,12 @@ body{
 
 }
 
+.btn-group{
+
+    display: flex;
+
+}
+
 
 /* Progress bar */
 
