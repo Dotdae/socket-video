@@ -13,7 +13,7 @@ app.get('/', (req, res) => res.render('index'))
 io.on('connection', (socket) => {
     console.log('User connected!');
     socket.on('playerEvent', (msj) =>{
-        console.log(`message: ${msj}`);
+        console.log(`Action: ${msj}`);
     });
 
 });
